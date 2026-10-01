@@ -3,9 +3,9 @@
 <p align="center">
   <b>MRxAlc0h0lic</b><br>
   🔐 CTF Player &nbsp;·&nbsp; 🕵️ OSINT &nbsp;·&nbsp; 🔄 Reverse Engineering
-  ## 🛠️ Arsenal
-
-`C` · `C++` · `Python` · `Assembly` · `HTML` · `CSS`
+  
+  <b>🛠️ Arsenal</b><br>
+   `C` · `C++` · `Python` · `Assembly` · `HTML` · `CSS`
 </p>
 
 ```console
