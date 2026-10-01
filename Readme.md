@@ -3,6 +3,9 @@
 <p align="center">
   <b>MRxAlc0h0lic</b><br>
   🔐 CTF Player &nbsp;·&nbsp; 🕵️ OSINT &nbsp;·&nbsp; 🔄 Reverse Engineering
+  ## 🛠️ Arsenal
+
+`C` · `C++` · `Python` · `Assembly` · `HTML` · `CSS`
 </p>
 
 ```console
@@ -17,10 +20,6 @@ youssif — CTF player & security learner
 🚩 Playing international CTFs
 🚀 Learning something new every day
 ```
-
-## 🛠️ Arsenal
-
-`C` · `C++` · `Python` · `Assembly` · `HTML` · `CSS`
 
 ## 📂 Projects
 
