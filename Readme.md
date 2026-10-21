@@ -1,37 +1,31 @@
-<h1 align="center">Hi there, I'm Youssef Ahmed (MRxAlc0h0lic) 👋</h1>
+<h1 align="center">Hi there, I'm Youssef Ahmed 👋</h1>
 
-<h3 align="center">Business Technology Student | Cybersecurity Enthusiast | Operation Control Leader @ EYE</h3>
+<h2 align="center">Cybersecurity Enthusiast | Vice Leader of Operation Control @ EYE</h2>
 
-<p align="center">
-  A passionate cybersecurity explorer and tech enthusiast blending business acumen with hardcore technical skills. From analyzing binaries and competing in CTFs to managing event logistics and leading teams.
+<p align="center" style="font-size: 1.1em;">
+  A passionate explorer of low-level systems and cybersecurity, combining technical depth with operational leadership.
 </p>
 
----
+<br>
 
-### 👨‍💻 About Me
-
+## 👨‍💻 Dev Info
 - 🎓 Studying **Business Technology** at Canadian International College (CIC).
-- 🛡️ Deeply interested in **Cybersecurity**, specifically Reverse Engineering, Binary Exploitation, Cryptography, Web Security, and OSINT.
-- 👔 Currently serving as the **Operation Control Leader** at the **EYE** student organization, focusing on logistics, team management, and interactive leadership training.
-- ⚙️ Enjoy tinkering with low-level system programming, hardware (Arduino/ESP32), and bare-metal environments.
-- 🐧 Daily driver: **Arch Linux** (Hyprland + Wayland) — heavy reliance on terminal-centric workflows and CLI tools.
-- 🚩 Active CTF Player, constantly learning and breaking things to understand how they work.
+- 👔 Serving as the **Vice Leader of Operation Control** at the **EYE** student organization, managing logistics and team operations.
+- ⚙️ Deeply interested in Reverse Engineering, Cryptography, OSINT, and hardware experimentation (Arduino/ESP32).
+- 🐧 Daily driver: **Arch Linux** (Hyprland) with a terminal-centric workflow.
 
-### 🛠️ Tech Stack & Tools
+## 🛠️ Technical Arsenal
+- **Programming & Scripting:** C, C++, Python, x86/x64 Assembly, CSS
+- **Core Competencies:** Low-level Debugging, Binary Exploitation, Reverse Engineering
+- **Tools:** GDB, Ghidra, Radare2, Burp Suite
 
-- **Programming:** C, C++, Python, x86/x64 Assembly, Bash
-- **Cybersecurity:** Ghidra, Radare2, GDB, Burp Suite, Blue Team Operations
-- **Environments:** Arch Linux, Windows, VS Code, Arduino-CLI
-
-### 📈 GitHub Stats
-
+## 📈 GitHub Stats
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=MRxAlc0h0lic&show_icons=true&theme=tokyonight&hide_border=true" alt="MRxAlc0h0lic's GitHub Stats" />
 </p>
-<p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=MRxAlc0h0lic&theme=tokyonight&hide_border=true" alt="MRxAlc0h0lic's GitHub Streak" />
-</p>
 
-### 📫 Let's Connect
+<br>
 
-- **Discord:** `mrxalc0h0lic`
+---
+
+<h3 align="center">🎯 Focus Area: Web Exploitation & Continuous Learning</h3>
