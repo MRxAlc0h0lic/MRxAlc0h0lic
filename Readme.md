@@ -34,4 +34,4 @@
 
 ### 📫 Let's Connect
 
-- **Discord:** `youssifahmed0208`
+- **Discord:** `mrxalc0h0lic`
