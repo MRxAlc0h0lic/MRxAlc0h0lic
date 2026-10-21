@@ -28,7 +28,11 @@ youssif — CTF player & security learner
 🚩 Playing international CTFs
 🚀 Learning something new every day
 ```
-
+📈 What I'm About
+- 🧠 Staying curious and learning by doing
+- 🧪 Practicing in labs and authorized environments
+- 🤝 Collaborating, sharing knowledge, and improving with the community
+- 
 ## 📂 Projects
 
 - 🐧 [**Arch-install-guide**](https://github.com/MRxAlc0h0lic/Arch-install-guide) — my Arch Linux + Hyprland install guide
