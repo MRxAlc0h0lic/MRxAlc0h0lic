@@ -1,39 +1,37 @@
-<h1 align="center">🚩 Youssif Ahmed Zayed</h1>
+<h1 align="center">Hi there, I'm Youssef Ahmed (MRxAlc0h0lic) 👋</h1>
+
+<h3 align="center">Business Technology Student | Cybersecurity Enthusiast | Operation Control Leader @ EYE</h3>
 
 <p align="center">
-  <b>MRxAlc0h0lic</b><br>
-  🔐 CTF Player &nbsp;·&nbsp; 🕵️ OSINT &nbsp;·&nbsp; 🔄 Reverse Engineering
-  </p>
-  
-  <p align="center">
-  <b>🛠️️ Arsenal</b><br>
-  <img src="https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=white" alt="C" />
-  <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" alt="C++" />
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-  <img src="https://img.shields.io/badge/Assembly-000000?style=for-the-badge&logo=assemblyscript&logoColor=white" alt="Assembly" />
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
+  A passionate cybersecurity explorer and tech enthusiast blending business acumen with hardcore technical skills. From analyzing binaries and competing in CTFs to managing event logistics and leading teams.
 </p>
-
-```console
-┌──(MRxAlc0h0lic㉿Arch)-[~]
-└─$ whoami
-youssif — CTF player & security learner
-
-┌──(MRxAlc0h0lic㉿Arch)-[~]
-└─$ cat about.txt
-🎓 Business Technology @ CIC (Canadian International College)
-🌍 Egypt, Giza
-🚩 Playing international CTFs
-🚀 Learning something new every day
-```
-
-## 📂 Projects
-
-- 🐧 [**Arch-install-guide**](https://github.com/MRxAlc0h0lic/Arch-install-guide) — my Arch Linux + Hyprland install guide
 
 ---
 
+### 👨‍💻 About Me
+
+- 🎓 Studying **Business Technology** at Canadian International College (CIC).
+- 🛡️ Deeply interested in **Cybersecurity**, specifically Reverse Engineering, Binary Exploitation, Cryptography, Web Security, and OSINT.
+- 👔 Currently serving as the **Operation Control Leader** at the **EYE** student organization, focusing on logistics, team management, and interactive leadership training.
+- ⚙️ Enjoy tinkering with low-level system programming, hardware (Arduino/ESP32), and bare-metal environments.
+- 🐧 Daily driver: **Arch Linux** (Hyprland + Wayland) — heavy reliance on terminal-centric workflows and CLI tools.
+- 🚩 Active CTF Player, constantly learning and breaking things to understand how they work.
+
+### 🛠️ Tech Stack & Tools
+
+- **Programming:** C, C++, Python, x86/x64 Assembly, Bash
+- **Cybersecurity:** Ghidra, Radare2, GDB, Burp Suite, Blue Team Operations
+- **Environments:** Arch Linux, Windows, VS Code, Arduino-CLI
+
+### 📈 GitHub Stats
+
 <p align="center">
-  <code>flag{thanks_for_visiting_have_a_great_day}</code> 😊
+  <img src="https://github-readme-stats.vercel.app/api?username=MRxAlc0h0lic&show_icons=true&theme=tokyonight&hide_border=true" alt="MRxAlc0h0lic's GitHub Stats" />
 </p>
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=MRxAlc0h0lic&theme=tokyonight&hide_border=true" alt="MRxAlc0h0lic's GitHub Streak" />
+</p>
+
+### 📫 Let's Connect
+
+- **Discord:** `youssifahmed0208`
