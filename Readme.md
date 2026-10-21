@@ -23,6 +23,7 @@ youssif — CTF player & security learner
 ┌──(MRxAlc0h0lic㉿Arch)-[~]
 └─$ cat about.txt
 🎓 Business Technology @ CIC (Canadian International College)
+🏛️ Vice — Operation Control Committee @ EYE
 🌍 Egypt, Giza
 🚩 Playing international CTFs
 🚀 Learning something new every day
