@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youssef Ahmed Ali Zayed | Ultimate Cyberpunk Portfolio & CLI</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            black: '#08090d',
+                            dark: '#0f111a',
+                            card: '#161927',
+                            cyan: '#00f0ff',
+                            green: '#00ff66',
+                            magenta: '#ff007f',
+                            yellow: '#f3e600',
+                            purple: '#9d00ff'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'Fira Code', 'Courier New', 'monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #08090d;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #08090d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00f0ff55;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f0ff;
+        }
+        .neon-glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+        .neon-glow-magenta {
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.4);
+        }
+        .neon-glow-green {
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+        }
+        .text-glow-cyan {
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+        }
+        .text-glow-magenta {
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.7);
+        }
+        .text-glow-green {
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.7);
+        }
+        .grid-bg {
+            background-image: linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .scanlines {
+            position: relative;
+        }
+        .scanlines::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 50;
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-cyber-black text-gray-100 min-h-screen selection:bg-cyber-cyan selection:text-black">
+
+    <!-- Matrix Rain Canvas Background -->
+    <canvas id="matrix-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-20"></canvas>
+
+    <!-- Top Ticker Bar -->
+    <div class="bg-gradient-to-r from-cyber-cyan via-cyber-magenta to-cyber-green text-black font-mono text-xs py-1.5 px-4 text-center font-extrabold tracking-wider z-50 relative shadow-lg">
+        <i class="fa-solid fa-terminal mr-2"></i> REPO: MRxAlcoholic/MRxAlcoholic // NILECTF 2026 3RD PLACE // STATUS: READY FOR DEPLOYMENT
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="sticky top-0 z-40 bg-cyber-dark/90 backdrop-blur-md border-b border-cyber-cyan/30 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded bg-cyber-black border-2 border-cyber-cyan flex items-center justify-center text-cyber-cyan font-mono font-bold text-lg neon-glow-cyan">
+                    YA
+                </div>
+                <div>
+                    <span class="font-mono font-bold text-cyber-cyan tracking-wider text-lg">Youssef Ahmed</span>
+                    <span class="block text-xs text-gray-400 font-mono">@MRxAlcoholic</span>
+                </div>
+            </div>
+
+            <!-- Nav Links -->
+            <div class="hidden lg:flex items-center space-x-6 font-mono text-xs">
+                <a href="#hero" class="text-gray-300 hover:text-cyber-cyan transition-colors"><span class="text-cyber-cyan">01.</span> ~/home</a>
+                <a href="#terminal" class="text-gray-300 hover:text-cyber-cyan transition-colors"><span class="text-cyber-cyan">02.</span> ~/cli-shell</a>
+                <a href="#skills" class="text-gray-300 hover:text-cyber-cyan transition-colors"><span class="text-cyber-cyan">03.</span> ~/skills</a>
+                <a href="#ctf" class="text-gray-300 hover:text-cyber-cyan transition-colors"><span class="text-cyber-cyan">04.</span> ~/ctf &amp; hws</a>
+                <a href="#experience" class="text-gray-300 hover:text-cyber-cyan transition-colors"><span class="text-cyber-cyan">05.</span> ~/career</a>
+                <a href="#readme" class="text-cyber-magenta hover:underline font-bold"><span class="text-cyber-magenta">[ README Generator ]</span></a>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center space-x-3">
+                <a href="https://github.com/MRxAlcoholic" target="_blank" class="w-9 h-9 rounded bg-cyber-card border border-cyber-cyan/50 flex items-center justify-center text-cyber-cyan hover:bg-cyber-cyan hover:text-black transition-all">
+                    <i class="fa-brands fa-github text-base"></i>
+                </a>
+                <a href="https://linkedin.com/in/youssif-ahmed-zayed-1b3233333" target="_blank" class="w-9 h-9 rounded bg-cyber-card border border-cyber-cyan/50 flex items-center justify-center text-cyber-cyan hover:bg-cyber-cyan hover:text-black transition-all">
+                    <i class="fa-brands fa-linkedin-in text-base"></i>
+                </a>
+                <button onclick="toggleArcadeModal()" class="px-3 py-2 rounded bg-cyber-magenta/20 border border-cyber-magenta text-cyber-magenta hover:bg-cyber-magenta hover:text-white font-mono text-xs font-bold transition-all flex items-center gap-2 neon-glow-magenta">
+                    <i class="fa-solid fa-gamepad"></i> PAC-MAN ARCADE
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="relative z-10 max-w-7xl mx-auto px-6 py-12 space-y-24 grid-bg">
+
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-[80vh] flex flex-col justify-center items-start space-y-8 pt-6">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyber-card border border-cyber-green/50 text-cyber-green font-mono text-xs neon-glow-green">
+                <span class="w-2 h-2 rounded-full bg-cyber-green animate-ping"></span>
+                <span>CIC BUSINESS TECH STUDENT // REVERSE ENGINEERING &amp; HARDWARE</span>
+            </div>
+
+            <div class="space-y-4">
+                <h1 class="text-4xl md:text-7xl font-extrabold tracking-tight font-mono">
+                    YOUSSEF <span class="text-cyber-cyan text-glow-cyan">AHMED</span>
+                </h1>
+                <h2 class="text-xl md:text-3xl font-mono text-gray-300">
+                    &gt; <span id="typed-text" class="text-cyber-magenta text-glow-magenta"></span><span class="animate-pulse">_</span>
+                </h2>
+            </div>
+
+            <p class="max-w-2xl text-gray-400 text-lg leading-relaxed">
+                Cybersecurity CTF competitor (<strong class="text-cyber-cyan">Absolut Team — 3rd in NileCTF</strong>), hardware prototyping enthusiast (KiCad / EAGLE), and Business Technology undergraduate at <strong class="text-cyber-magenta">CIC (2026-2030)</strong>.
+            </p>
+
+            <!-- Quick Terminal Preview -->
+            <div class="w-full max-w-3xl rounded-xl bg-cyber-card border border-cyber-cyan/40 shadow-2xl overflow-hidden">
+                <div class="bg-cyber-dark px-4 py-2 border-b border-cyber-cyan/30 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                        <span class="font-mono text-xs text-gray-400 ml-2">bash - MRxAlcoholic@kali:~</span>
+                    </div>
+                    <span class="font-mono text-xs text-cyber-cyan">Arch Linux (Hyprland)</span>
+                </div>
+                <div class="p-5 font-mono text-sm space-y-3 text-gray-300">
+                    <div class="flex items-center text-cyber-green">
+                        <i class="fa-solid fa-chevron-right mr-2"></i>
+                        <span>./run_portfolio.sh</span>
+                    </div>
+                    <div class="text-cyber-cyan pl-4 text-xs space-y-1">
+                        <div>[+] Loading profile data... SUCCESS</div>
+                        <div>[+] Initializing security modules (Ghidra, x64dbg)... OK</div>
+                        <div>[+] Connecting to Absolut Team CTF server... CONNECTED</div>
+                        <div class="text-cyber-magenta font-bold pt-1">&gt; Welcome to Youssef's Interactive GitHub Portfolio! Try the CLI below or play Pac-Man!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-4 pt-2">
+                <a href="#terminal" class="px-6 py-3 rounded bg-cyber-cyan text-black font-mono font-bold hover:bg-white transition-all neon-glow-cyan flex items-center gap-2">
+                    <i class="fa-solid fa-terminal"></i> OPEN CLI TERMINAL
+                </a>
+                <a href="#readme" class="px-6 py-3 rounded bg-cyber-card border border-cyber-magenta text-cyber-magenta font-mono font-bold hover:bg-cyber-magenta hover:text-white transition-all neon-glow-magenta flex items-center gap-2">
+                    <i class="fa-solid fa-file-code"></i> GITHUB README.MD
+                </a>
+                <button onclick="toggleArcadeModal()" class="px-6 py-3 rounded bg-cyber-card border border-cyber-green text-cyber-green font-mono font-bold hover:bg-cyber-green hover:text-black transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-gamepad"></i> PLAY PAC-MAN
+                </button>
+            </div>
+        </section>
+
+        <!-- Interactive CLI Terminal Simulator Section -->
+        <section id="terminal" class="space-y-8">
+            <div class="border-l-4 border-cyber-cyan pl-4">
+                <h2 class="text-3xl font-mono font-bold text-white flex items-center gap-3">
+                    <span class="text-cyber-cyan">02.</span> INTERACTIVE CLI TERMINAL SHELL
+                </h2>
+                <p class="text-gray-400 font-mono text-sm mt-1">Type commands like <code class="text-cyber-cyan">help</code>, <code class="text-cyber-cyan">skills</code>, <code class="text-cyber-cyan">ctf</code>, <code class="text-cyber-cyan">education</code>, <code class="text-cyber-cyan">work</code>, <code class="text-cyber-cyan">contact</code>, or <code class="text-cyber-cyan">clear</code>.</p>
+            </div>
+
+            <div class="rounded-xl bg-cyber-card border-2 border-cyber-cyan/50 overflow-hidden shadow-2xl neon-glow-cyan">
+                <div class="bg-cyber-dark px-6 py-3 border-b border-cyber-cyan/30 flex items-center justify-between">
+                    <div class="flex items-center space-x-2 font-mono text-xs text-cyber-cyan font-bold">
+                        <i class="fa-solid fa-terminal"></i>
+                        <span>MRxAlcoholic@kali-linux:~# (Interactive Shell)</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="runCommand('help')" class="px-2 py-1 rounded bg-cyber-cyan/20 border border-cyber-cyan text-cyber-cyan text-xs font-mono hover:bg-cyber-cyan hover:text-black transition-all">help</button>
+                        <button onclick="runCommand('skills')" class="px-2 py-1 rounded bg-cyber-magenta/20 border border-cyber-magenta text-cyber-magenta text-xs font-mono hover:bg-cyber-magenta hover:text-white transition-all">skills</button>
+                        <button onclick="runCommand('ctf')" class="px-2 py-1 rounded bg-cyber-green/20 border border-cyber-green text-cyber-green text-xs font-mono hover:bg-cyber-green hover:text-black transition-all">ctf</button>
+                    </div>
+                </div>
+
+                <!-- Terminal Output Window -->
+                <div id="terminal-output" class="p-6 bg-cyber-black font-mono text-xs md:text-sm text-gray-300 h-80 overflow-y-auto space-y-3">
+                    <div><span class="text-cyber-green">MRxAlcoholic@kali</span>:<span class="text-cyber-cyan">~</span>$ neofetch</div>
+                    <div class="text-cyan-400 pl-4 space-y-1">
+                        <div>---------------------------------------------------</div>
+                        <div>OS: Arch Linux / Kali Linux x86_64</div>
+                        <div>Host: Custom Cyber Security Lab Rig</div>
+                        <div>Uptime: 1337 hours, 42 mins</div>
+                        <div>Role: Business Technology Student @ CIC (2026-2030)</div>
+                        <div>CTF Rank: 3rd Place NileCTF 2026 (Absolut Team)</div>
+                        <div>---------------------------------------------------</div>
+                    </div>
+                    <div class="text-cyber-yellow">&gt; Type <span class="text-white font-bold">help</span> to view available commands.</div>
+                </div>
+
+                <!-- Terminal Input Form -->
+                <form id="terminal-form" onsubmit="handleCliSubmit(event)" class="bg-cyber-dark px-6 py-3 border-t border-cyber-cyan/30 flex items-center gap-3">
+                    <span class="text-cyber-green font-mono font-bold text-sm">MRxAlcoholic@kali:~$</span>
+                    <input type="text" id="terminal-input" autocomplete="off" placeholder="type a command (e.g. help, skills, ctf, contact)..." class="flex-1 bg-transparent border-none outline-none font-mono text-sm text-white placeholder-gray-500">
+                    <button type="submit" class="px-4 py-1.5 rounded bg-cyber-cyan text-black font-mono text-xs font-bold hover:bg-white transition-all">EXEC</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Technical Skills Matrix Section -->
+        <section id="skills" class="space-y-12">
+            <div class="border-l-4 border-cyber-magenta pl-4">
+                <h2 class="text-3xl font-mono font-bold text-white flex items-center gap-3">
+                    <span class="text-cyber-magenta">03.</span> TECHNICAL SKILLS MATRIX
+                </h2>
+                <p class="text-gray-400 font-mono text-sm mt-1">Programming languages, reverse engineering toolsets, hardware design, and OS proficiency.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Programming -->
+                <div class="rounded-xl bg-cyber-card border border-cyber-cyan/30 p-6 space-y-4 hover:border-cyber-cyan transition-all">
+                    <div class="w-12 h-12 rounded bg-cyber-cyan/10 border border-cyber-cyan flex items-center justify-center text-cyber-cyan text-xl">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="font-mono font-bold text-lg text-white">Programming</h3>
+                    <ul class="space-y-2 font-mono text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-cyan"></i> Python (Data &amp; Scripts)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-cyan"></i> C &amp; C++ (Low-Level)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-cyan"></i> Assembly Basics</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-cyan"></i> HTML5 &amp; CSS3</li>
+                    </ul>
+                </div>
+
+                <!-- Cybersecurity -->
+                <div class="rounded-xl bg-cyber-card border border-cyber-magenta/30 p-6 space-y-4 hover:border-cyber-magenta transition-all">
+                    <div class="w-12 h-12 rounded bg-cyber-magenta/10 border border-cyber-magenta flex items-center justify-center text-cyber-magenta text-xl">
+                        <i class="fa-solid fa-user-secret"></i>
+                    </div>
+                    <h3 class="font-mono font-bold text-lg text-white">Cybersecurity</h3>
+                    <ul class="space-y-2 font-mono text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-magenta"></i> Ghidra &amp; x32/x64dbg</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-magenta"></i> OSINT Web Research</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-magenta"></i> Intro Digital Forensics</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-magenta"></i> TryHackMe Pre Security</li>
+                    </ul>
+                </div>
+
+                <!-- Hardware -->
+                <div class="rounded-xl bg-cyber-card border border-cyber-green/30 p-6 space-y-4 hover:border-cyber-green transition-all">
+                    <div class="w-12 h-12 rounded bg-cyber-green/10 border border-cyber-green flex items-center justify-center text-cyber-green text-xl">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3 class="font-mono font-bold text-lg text-white">Hardware &amp; Systems</h3>
+                    <ul class="space-y-2 font-mono text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-green"></i> KiCad &amp; EAGLE PCB Design</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-green"></i> Hardware Jams / Rigs</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-green"></i> Electrical Troubleshooting</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-green"></i> Arch &amp; Kali Linux Setup</li>
+                    </ul>
+                </div>
+
+                <!-- Certs -->
+                <div class="rounded-xl bg-cyber-card border border-cyber-yellow/30 p-6 space-y-4 hover:border-cyber-yellow transition-all">
+                    <div class="w-12 h-12 rounded bg-cyber-yellow/10 border border-cyber-yellow flex items-center justify-center text-cyber-yellow text-xl">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="font-mono font-bold text-lg text-white">Certificates</h3>
+                    <ul class="space-y-2 font-mono text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-yellow"></i> ICDL (Unix Academy 2024)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-yellow"></i> Saheeh Python Programming</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-yellow"></i> Yanfaa Web &amp; Data</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right text-cyber-yellow"></i> Obsidian Notes &amp; Office</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTF & Hardware Section -->
+        <section id="ctf" class="space-y-12">
+            <div class="border-l-4 border-cyber-green pl-4">
+                <h2 class="text-3xl font-mono font-bold text-white flex items-center gap-3">
+                    <span class="text-cyber-green">04.</span> CYBERSECURITY CTF &amp; HARDWARE LABS
+                </h2>
+                <p class="text-gray-400 font-mono text-sm mt-1">Podium finish at NileCTF 2026 and hands-on reverse engineering experiments.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- CTF Podium -->
+                <div class="rounded-xl bg-cyber-card border border-cyber-cyan/40 p-8 space-y-6 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded bg-cyber-cyan/20 border border-cyber-cyan text-cyber-cyan font-mono text-xs font-bold">CTF COMPETITION</span>
+                            <span class="font-mono text-xs text-gray-400">Feb 2026</span>
+                        </div>
+                        <h3 class="font-mono font-bold text-2xl text-white">Absolut Team — NileCTF 2026 (3rd Place)</h3>
+                        <p class="text-gray-300 leading-relaxed text-sm">
+                            Secured <strong class="text-cyber-cyan">3rd Place in the NileCTF Online Round</strong> with Absolut Team. Contributed extensively to reverse engineering challenges, OSINT investigations, miscellaneous puzzles, and digital forensics analysis.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800 font-mono text-xs text-cyber-cyan flex items-center justify-between">
+                        <span><i class="fa-solid fa-trophy mr-1"></i> Podium Podium Finish</span>
+                        <span class="text-gray-400">Absolut Team</span>
+                    </div>
+                </div>
+
+                <!-- Hardware Lab -->
+                <div class="rounded-xl bg-cyber-card border border-cyber-magenta/40 p-8 space-y-6 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded bg-cyber-magenta/20 border border-cyber-magenta text-cyber-magenta font-mono text-xs font-bold">HARDWARE R&amp;D</span>
+                            <span class="font-mono text-xs text-gray-400">In Development</span>
+                        </div>
+                        <h3 class="font-mono font-bold text-2xl text-white">Absolute Tools &amp; Hardware Jams</h3>
+                        <p class="text-gray-300 leading-relaxed text-sm">
+                            Hands-on exploration with microphone jams, signal generators, and circuit testing rigs. Developing custom PCB schematics and layouts using <strong class="text-cyber-magenta">KiCad and EAGLE</strong> for specialized hardware security research.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800 font-mono text-xs text-cyber-magenta flex items-center justify-between">
+                        <span><i class="fa-solid fa-microchip mr-1"></i> KiCad &amp; EAGLE PCB</span>
+                        <span class="text-gray-400">R&amp;D Lab</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career, Education & Leadership Section -->
+        <section id="experience" class="space-y-12">
+            <div class="border-l-4 border-cyber-yellow pl-4">
+                <h2 class="text-3xl font-mono font-bold text-white flex items-center gap-3">
+                    <span class="text-cyber-yellow">05.</span> EDUCATION, LEADERSHIP &amp; WORK EXPERIENCE
+                </h2>
+                <p class="text-gray-400 font-mono text-sm mt-1">CIC undergraduate studies, Egyptian Youth Entity leadership, and industrial maintenance experience.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Education -->
+                <div class="rounded-xl bg-cyber-card border border-cyber-cyan/30 p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded bg-cyber-cyan/20 border border-cyber-cyan text-cyber-cyan font-mono text-xs font-bold">EDUCATION</span>
+                        <span class="font-mono text-xs text-gray-400">2026 - 2030</span>
+                    </div>
+                    <h3 class="font-mono font-bold text-lg text-white">Canadian International College (CIC)</h3>
+                    <p class="text-cyber-cyan font-mono text-sm">Bachelor in Business Technology</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Currently studying business technology fundamentals, bridging technical systems administration with corporate digital strategy. Expected graduation in 2030.
+                    </p>
+                </div>
+
+                <!-- Leadership -->
+                <div class="rounded-xl bg-cyber-card border border-cyber-yellow/30 p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded bg-cyber-yellow/20 border border-cyber-yellow text-cyber-yellow font-mono text-xs font-bold">EYE LEADERSHIP</span>
+                        <span class="font-mono text-xs text-gray-400">Oct 2026 - Present</span>
+                    </div>
+                    <h3 class="font-mono font-bold text-lg text-white">Egyptian Youth Entity (EYE)</h3>
+                    <p class="text-cyber-yellow font-mono text-sm">Operations &amp; Control Vice (Giza Branch)</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Supporting branch leadership in a committee of ~46 members. Helped coordinate "Start Smart" for 100+ attendees (VIP reception, microphone checks, stage flow) and delivered a leadership session.
+                    </p>
+                </div>
+
+                <!-- Work -->
+                <div class="rounded-xl bg-cyber-card border border-cyber-green/30 p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded bg-cyber-green/20 border border-cyber-green text-cyber-green font-mono text-xs font-bold">INDUSTRIAL WORK</span>
+                        <span class="font-mono text-xs text-gray-400">2024 - 2025</span>
+                    </div>
+                    <h3 class="font-mono font-bold text-lg text-white">Rita Fresh Food</h3>
+                    <p class="text-cyber-green font-mono text-sm">Maintenance Technician</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Troubleshot electric motors, inspected grinder wiring, dismantled and lubricated Flow Pack machine gears, and performed refrigerant charging. Earlier warehousing role at <strong>Rameda Pharmaceuticals</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub README Generator Section -->
+        <section id="readme" class="space-y-8 pt-4">
+            <div class="border-l-4 border-cyber-magenta pl-4">
+                <h2 class="text-3xl font-mono font-bold text-white flex items-center gap-3">
+                    <span class="text-cyber-magenta">06.</span> GITHUB PROFILE README GENERATOR
+                </h2>
+                <p class="text-gray-400 font-mono text-sm mt-1">Copy this production-ready Markdown code to feature on your GitHub profile repository (`MRxAlcoholic/MRxAlcoholic`).</p>
+            </div>
+
+            <div class="rounded-xl bg-cyber-card border border-cyber-magenta/50 overflow-hidden shadow-2xl">
+                <div class="bg-cyber-dark px-6 py-4 border-b border-cyber-magenta/30 flex items-center justify-between">
+                    <div class="flex items-center space-x-2 font-mono text-xs text-cyber-magenta font-bold">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <span>README.md (Markdown Source)</span>
+                    </div>
+                    <button onclick="copyReadme()" class="px-4 py-1.5 rounded bg-cyber-magenta text-white font-mono text-xs font-bold hover:bg-white hover:text-black transition-all flex items-center gap-2">
+                        <i class="fa-regular fa-copy" id="copy-icon"></i> <span id="copy-text">COPY README</span>
+                    </button>
+                </div>
+                <div class="p-6 bg-cyber-black overflow-x-auto max-h-96">
+                    <pre id="readme-code" class="font-mono text-xs text-gray-300 leading-relaxed"><code>&lt;h1 align="center"&gt;Hi 👋, I'm Youssef Ahmed Ali Zayed&lt;/h1&gt;
+&lt;h3 align="center"&gt;Business Technology Student | Cybersecurity &amp; Hardware Enthusiast | CTF Player&lt;/h3&gt;
+
+&lt;p align="center"&gt;
+  &lt;img src="https://komarev.com/ghpvc/?username=MRxAlcoholic&amp;color=00f0ff&amp;style=flat-square" alt="Profile Views" /&gt;
+  &lt;a href="https://github.com/MRxAlcoholic"&gt;&lt;img src="https://img.shields.io/badge/GitHub-MRxAlcoholic-00f0ff?style=flat-square&amp;logo=github" alt="GitHub" /&gt;&lt;/a&gt;
+  &lt;a href="https://linkedin.com/in/youssif-ahmed-zayed-1b3233333"&gt;&lt;img src="https://img.shields.io/badge/LinkedIn-Youssef_Ahmed-ff007f?style=flat-square&amp;logo=linkedin" alt="LinkedIn" /&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+---
+
+### 🚀 About Me
+- 🌱 I’m currently studying **Business Technology at Canadian International College (CIC)** (2026–2030).
+- 🛡️ Active CTF player in **Absolut Team** — secured **3rd Place in NileCTF 2026 Online Round**.
+- ⚡ Passionate about Reverse Engineering (Ghidra, x64dbg), OSINT, and Hardware/PCB prototyping (KiCad &amp; EAGLE).
+- 💬 Ask me about Linux (Arch/Kali), Python, C/C++, and industrial maintenance engineering.
+
+---
+
+### 💻 Tech Stack &amp; Skills
+- **Programming:** Python, C, C++, Assembly, HTML5, CSS3
+- **Cybersecurity:** Ghidra, x32/x64dbg, OSINT Research, Forensics, TryHackMe
+- **Hardware:** KiCad, EAGLE, ESP32, Electrical Troubleshooting
+- **Operating Systems:** Arch Linux (Hyprland), Kali Linux
+
+---
+
+### 🏆 Certifications &amp; Training
+- **TryHackMe:** Pre Security Path (Completed Feb 2026)
+- **Saheeh Platform:** Python Programming from Scratch (Completed Oct 2026)
+- **Unix Academy:** ICDL Training Scholarship (Certified Nov 2024)
+- **Yanfaa:** HTML, CSS &amp; Python for Data Analysis
+
+---
+
+&lt;p align="center"&gt;
+  &lt;img src="https://github-readme-stats.vercel.app/api?username=MRxAlcoholic&amp;show_icons=true&amp;theme=tokyonight&amp;hide_border=true" alt="GitHub Stats" /&gt;
+&lt;/p&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-cyber-cyan/20 bg-cyber-dark mt-20 py-8 px-6 text-center font-mono text-xs text-gray-400">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+                <span class="text-cyber-cyan font-bold">Youssef Ahmed Ali Zayed</span> &copy; 2026. All rights reserved.
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="https://github.com/MRxAlcoholic" target="_blank" class="hover:text-cyber-cyan transition-colors">GitHub</a>
+                <a href="https://linkedin.com/in/youssif-ahmed-zayed-1b3233333" target="_blank" class="hover:text-cyber-cyan transition-colors">LinkedIn</a>
+                <a href="mailto:youssifvwahmed@gmail.com" class="hover:text-cyber-cyan transition-colors">Email</a>
+            </div>
+            <div class="text-cyber-green">
+                <i class="fa-solid fa-terminal mr-1"></i> Repository Deployed Successfully
+            </div>
+        </div>
+    </footer>
+
+    <!-- Pac-Man / Retro Arcade Easter Egg Modal -->
+    <div id="arcade-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="rounded-2xl bg-cyber-card border-2 border-cyber-magenta max-w-lg w-full p-6 space-y-6 neon-glow-magenta relative">
+            <div class="flex items-center justify-between border-b border-cyber-magenta/30 pb-4">
+                <h3 class="font-mono font-bold text-xl text-cyber-magenta flex items-center gap-2">
+                    <i class="fa-solid fa-gamepad"></i> RETRO ARCADE // PAC-MAN EASTER EGG
+                </h3>
+                <button onclick="toggleArcadeModal()" class="text-gray-400 hover:text-white font-mono text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Arcade Screen -->
+            <div class="rounded bg-black border border-cyber-cyan/50 p-6 text-center space-y-4 relative overflow-hidden">
+                <div class="absolute inset-0 scanlines pointer-events-none"></div>
+                <div class="text-cyber-yellow text-4xl animate-bounce">
+                    ᗧ • • • ᗣ ᗧ ᗣ
+                </div>
+                <p class="font-mono text-sm text-gray-300">
+                    Welcome to Youssef's Arcade Lounge! When not reversing binaries in Ghidra or designing PCB layouts in KiCad, high scores are being chased.
+                </p>
+                <div class="p-3 rounded bg-cyber-dark border border-cyber-green/40 font-mono text-xs text-cyber-green">
+                    CURRENT HIGH SCORE: 1,337,404 PTS [MRxAlcoholic]
+                </div>
+            </div>
+
+            <div class="flex justify-end">
+                <button onclick="toggleArcadeModal()" class="px-6 py-2 rounded bg-cyber-magenta text-white font-mono text-xs font-bold hover:bg-white hover:text-black transition-all">
+                    CLOSE ARCADE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Matrix Rain, Typing & CLI Simulator -->
+    <script>
+        // Matrix Rain Background Animation
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*+-_';
+        const alphabet = katakana + latin;
+
+        const fontSize = 16;
+        let columns = canvas.width / fontSize;
+        const rainDrops = [];
+
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(8, 9, 13, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00f0ff';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 30);
+
+        // Typing Effect for Hero Subtitle
+        const words = [
+            "Cybersecurity CTF Player",
+            "Business Technology Student @ CIC",
+            "Reverse Engineering Enthusiast",
+            "Hardware & PCB Prototyper",
+            "Absolut Team // NileCTF 3rd Place"
+        ];
+        let i = 0;
+
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typed-text').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                    return false;
+                }
+                setTimeout(loopTyping, 80);
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = words[i].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typed-text').innerHTML = word.join("");
+                } else {
+                    if (words.length > (i + 1)) {
+                        i++;
+                    } else {
+                        i = 0;
+                    }
+                    setTimeout(typingEffect, 500);
+                    return false;
+                }
+                setTimeout(loopDeleting, 40);
+            };
+            loopDeleting();
+        }
+        typingEffect();
+
+        // CLI Terminal Simulator Logic
+        function handleCliSubmit(event) {
+            event.preventDefault();
+            const inputEl = document.getElementById('terminal-input');
+            const cmd = inputEl.value.trim().toLowerCase();
+            if (!cmd) return;
+
+            runCommand(cmd);
+            inputEl.value = '';
+        }
+
+        function runCommand(cmd) {
+            const output = document.getElementById('terminal-output');
+            
+            // Append user command echo
+            const userLine = document.createElement('div');
+            userLine.innerHTML = `<span class="text-cyber-green">MRxAlcoholic@kali</span>:<span class="text-cyber-cyan">~</span>$ ${cmd}`;
+            output.appendChild(userLine);
+
+            const responseLine = document.createElement('div');
+            responseLine.className = "pl-4 space-y-1 text-xs md:text-sm";
+
+            switch(cmd) {
+                case 'help':
+                    responseLine.innerHTML = `
+                        <div class="text-cyber-cyan font-bold">Available Commands:</div>
+                        <div>  <span class="text-cyber-yellow">whoami</span>    - Display summary profile</div>
+                        <div>  <span class="text-cyber-yellow">skills</span>    - List programming & cybersecurity skills</div>
+                        <div>  <span class="text-cyber-yellow">ctf</span>       - Show NileCTF 3rd place achievements</div>
+                        <div>  <span class="text-cyber-yellow">education</span> - CIC Business Technology details</div>
+                        <div>  <span class="text-cyber-yellow">work</span>      - Rita Fresh Food & Rameda experience</div>
+                        <div>  <span class="text-cyber-yellow">contact</span>   - Get email, GitHub, & LinkedIn links</div>
+                        <div>  <span class="text-cyber-yellow">game</span>      - Launch Pac-Man arcade modal</div>
+                        <div>  <span class="text-cyber-yellow">clear</span>     - Clear terminal screen</div>
+                    `;
+                    break;
+                case 'whoami':
+                    responseLine.innerHTML = `<span class="text-cyber-cyan">Youssef Ahmed Ali Zayed — Business Technology student at CIC (2026-2030), CTF player in Absolut Team, and hardware maintenance technician.</span>`;
+                    break;
+                case 'skills':
+                    responseLine.innerHTML = `<span class="text-cyber-magenta">Programming:</span> Python, C, C++, Assembly, HTML/CSS<br><span class="text-cyber-cyan">Cybersecurity:</span> Ghidra, x32/x64dbg, OSINT, TryHackMe Pre Security<br><span class="text-cyber-green">Hardware:</span> KiCad, EAGLE PCB Design, Electrical Wiring`;
+                    break;
+                case 'ctf':
+                    responseLine.innerHTML = `<span class="text-cyber-green">[+] Absolut Team — NileCTF 2026 Online Round: 3rd Place! Contributed to reverse engineering, OSINT, and digital forensics challenges.</span>`;
+                    break;
+                case 'education':
+                    responseLine.innerHTML = `<span class="text-cyber-yellow">Canadian International College (CIC) | Business Technology (2026-2030). ICDL Certified (Unix Academy 2024).</span>`;
+                    break;
+                case 'work':
+                    responseLine.innerHTML = `<span class="text-cyber-cyan">Rita Fresh Food: Maintenance Technician (Motors, Flow Pack gears, Refrigeration). Rameda Pharmaceuticals: Production & Warehouse Support.</span>`;
+                    break;
+                case 'contact':
+                    responseLine.innerHTML = `Email: <a href="mailto:youssifvwahmed@gmail.com" class="text-cyber-cyan underline">youssifvwahmed@gmail.com</a><br>GitHub: <a href="https://github.com/MRxAlcoholic" target="_blank" class="text-cyber-magenta underline">@MRxAlcoholic</a><br>LinkedIn: <a href="https://linkedin.com/in/youssif-ahmed-zayed-1b3233333" target="_blank" class="text-cyber-cyan underline">Youssef Ahmed</a>`;
+                    break;
+                case 'game':
+                    responseLine.innerHTML = `<span class="text-cyber-yellow">[+] Launching Pac-Man Arcade Easter Egg...</span>`;
+                    toggleArcadeModal();
+                    break;
+                case 'clear':
+                    output.innerHTML = '';
+                    return;
+                default:
+                    responseLine.innerHTML = `<span class="text-red-400">Command not recognized: '${cmd}'. Type 'help' for available commands.</span>`;
+            }
+
+            output.appendChild(responseLine);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        // Arcade Modal Toggle
+        function toggleArcadeModal() {
+            const modal = document.getElementById('arcade-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Copy README function
+        function copyReadme() {
+            const codeText = document.getElementById('readme-code').innerText;
+            const textarea = document.createElement('textarea');
+            textarea.value = codeText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const copyText = document.getElementById('copy-text');
+            const copyIcon = document.getElementById('copy-icon');
+
+            copyText.innerText = 'COPIED!';
+            copyIcon.className = 'fa-solid fa-check';
+
+            setTimeout(() => {
+                copyText.innerText = 'COPY README';
+                copyIcon.className = 'fa-regular fa-copy';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
